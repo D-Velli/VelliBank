@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
     <!-- Style -->
     <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+      <link rel="stylesheet" href="{% static "website/css/style.css" %}">
     <title>Se connecter</title>
   </head>
   <body>
@@ -31,10 +32,12 @@
               <h3>Se connecter a <strong>VelliBank</strong></h3>
               <p class="mb-4">Accédez à votre espace sécurisé pour gérer vos comptes, suivre vos transactions et profiter de nos services bancaires en ligne.</p>
             </div>
+                <br>
             <form action="#" method="post">
+                {% csrf_token %}
               <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username">
+                <label for="username">Email</label>
+                <input type="email" class="form-control" id="username">
 
               </div>
               <div class="form-group last mb-4">
@@ -75,7 +78,7 @@
       </div>
     </div>
   </div>
-
+    {% include "footer.html"%}
   
     <script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
     <script src="{% static "members/auth/login/js/popper.min.js" %}"></script>

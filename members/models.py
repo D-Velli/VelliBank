@@ -1,3 +1,8 @@
+from datetime import timedelta, date
+from distutils.log import fatal
+
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.hashers import make_password
 
@@ -27,8 +32,9 @@ class Client(models.Model):
     password = models.CharField(max_length=100)
     numero = models.CharField(unique=True)
     date_inscription = models.DateField(auto_now_add=True)
+    date_naissance = models.DateField(null=False, blank=False, default=date(2004, 1, 1))
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="visiteur")
-    adresse = models.OneToOneField(Adresse, on_delete=models.SET_NULL, null=True, blank=True)
+    adresse = models.ForeignKey(Adresse, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['nom']
@@ -43,6 +49,14 @@ class Client(models.Model):
             self.password = make_password(self.password)
 
         super().save(*args, **kwargs)
+
+
+    def clean(self):
+        super().clean()
+        if self.date_naissance:
+            age_limit = timezone.now().date() - timedelta(days=18*365)
+            if self.date_naissance > age_limit:
+                raise ValidationError("Vous devez avoir au moins 18 ans pour ouvrir un compte.")
 
 
 
