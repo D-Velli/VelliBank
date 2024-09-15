@@ -6,11 +6,10 @@ class LoginView(TemplateView):
 
 
 
-
 class ResetPasswordView(TemplateView):
-    pass
+    template_name = "members/reset-password.html"
 
 
 
 class RegisterView(TemplateView):
-    pass
+    template_name = 'members/auth/register.html'

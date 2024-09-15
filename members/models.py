@@ -1,6 +1,6 @@
 from datetime import timedelta, date
 from distutils.log import fatal
-
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -15,7 +15,9 @@ class Adresse(models.Model):
     app_unite = models.CharField(max_length=10, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.rue} {self.ville} {self.province} {self.code_postal}"
+        # if self.app_unite is not None:
+        #     return f"{self.app_unite} {self.rue} {self.ville} {self.province} {self.code_postal}"
+        return f"{self.app_unite} {self.rue} {self.ville} {self.province} {self.code_postal}"
 
 
 class Client(models.Model):
@@ -35,29 +37,30 @@ class Client(models.Model):
     date_naissance = models.DateField(null=False, blank=False, default=date(2004, 1, 1))
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="visiteur")
     adresse = models.ForeignKey(Adresse, on_delete=models.SET_NULL, null=True, blank=True)
+    genre = models.CharField(max_length=100, choices=[("M", "Masculin"), ("F", "Feminin"), ("X", "Sac Walmart")], default="Masculin")
+    is_first = models.BooleanField(default=True)
 
     class Meta:
         ordering = ['nom']
 
-
+    #Le schema d'affichage de mes donnees
     def __str__(self):
         return f'{self.nom}, {self.prenom} ({self.status}) {str(self.date_inscription)}'
 
-
+    #HAchage du mdp avant la sauvegarde
     def save(self, *args, **kwargs):
         if self.password and not self.password.startswith("pbkdf2_sha256$"):
             self.password = make_password(self.password)
 
         super().save(*args, **kwargs)
 
-
+    #Verifier si l'utilisateur qui s'inscrit est majeur. Autrepasse si un admin qui ouvre le compte
     def clean(self):
         super().clean()
         if self.date_naissance:
             age_limit = timezone.now().date() - timedelta(days=18*365)
             if self.date_naissance > age_limit:
                 raise ValidationError("Vous devez avoir au moins 18 ans pour ouvrir un compte.")
-
 
 
 

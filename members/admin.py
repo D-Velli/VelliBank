@@ -6,7 +6,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_editable = ("status", )
 
 class AdresseAdmin(admin.ModelAdmin):
-    list_display = ("rue", "ville", "province", "code_postal")
+    list_display = ("app_unite","rue", "ville", "province", "code_postal")
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Adresse, AdresseAdmin)

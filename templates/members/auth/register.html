@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "members/auth/login/fonts/icomoon/style.css" %}">
+    <link rel="stylesheet" href="{% static "members/auth/login/css/owl.carousel.min.css" %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
+    <title>Ouvrir un compte</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    {% include "navbar.html" %}
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="{% static "members/auth/login/images/undraw_file_sync_ot38.svg" %}" alt="Image"
+                     class="img-fluid">
+            </div>
+            <div class="col-md-6 contents">
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        <div class="mb-5">
+                            <h3>Ouvrir un compte <strong>VelliBank</strong></h3>
+                            <p class="mb-4">Ouvrez votre compte en quelques minutes et profitez de nos services
+                                bancaires personnalisés pour répondre à tous vos besoins financiers.</p>
+                        </div>
+                        <br>
+                        <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="form-group first">
+                                <label for="nom">Nom</label>
+                                <input type="text" class="form-control" id="nom" required/>
+                            </div>
+                            <div class="form-group first">
+                                <label for="prenom">Prenom</label>
+                                <input type="text" class="form-control" id="prenom" required/>
+                            </div>
+                            <div class="form-group first">
+                                <label for="dob">Date de naissance</label>
+                                <input type="date" class="form-control" id="dob" required/>
+                            </div>
+                            <div class="form-group first">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" required/>
+                            </div>
+                            <div class="form-group first">
+                                <label for="confirm-email">Confirmer Email</label>
+                                <input type="email" class="form-control" id="confirm-email" required/>
+                            </div>
+                            <div class="form-group last mb-4">
+                                <label for="telephone">Téléphone</label>
+                                <input type="tel" class="form-control" id="telephone" pattern="[0-9]{10}" required/>
+                            </div>
+
+                            <input type="submit" value="S'inscrire" class="btn btn-block btn-primary"/>
+                            <span class="d-block text-left my-4"><a href="{% url "members:login" %}"><strong>Se Connecter</strong></a></span>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "footer.html" %}
+<script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/main.js" %}"></script>
+</body>
+
+</html>

@@ -1,7 +1,7 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="fr">
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,77 +12,82 @@
     <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
     <!-- Style -->
     <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
-      <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
     <title>Se connecter</title>
-  </head>
-  <body>
-  
-
-  
-  <div class="content">
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    {% include "navbar.html" %}
+</div>
+<div class="content">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 order-md-2">
-          <img src="{% static "members/auth/login/images/undraw_file_sync_ot38.svg" %}" alt="Image" class="img-fluid">
-        </div>
-        <div class="col-md-6 contents">
-          <div class="row justify-content-center">
-            <div class="col-md-8">
-              <div class="mb-4">
-              <h3>Se connecter a <strong>VelliBank</strong></h3>
-              <p class="mb-4">Accédez à votre espace sécurisé pour gérer vos comptes, suivre vos transactions et profiter de nos services bancaires en ligne.</p>
+
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="{% static "members/auth/login/images/undraw_file_sync_ot38.svg" %}" alt="Image"
+                     class="img-fluid">
             </div>
-                <br>
-            <form action="#" method="post">
-                {% csrf_token %}
-              <div class="form-group first">
-                <label for="username">Email</label>
-                <input type="email" class="form-control" id="username">
+            <div class="col-md-6 contents">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="mb-4">
+                            <h3>Se connecter à <strong>VelliBank</strong></h3>
+                            <p class="mb-4">Accédez à votre espace sécurisé pour gérer vos comptes, suivre vos
+                                transactions et profiter de nos services bancaires en ligne.</p>
+                        </div>
+                        <br>
+                        <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="form-group first">
+                                <label for="username">Email</label>
+                                <input type="email" class="form-control" id="username">
 
-              </div>
-              <div class="form-group last mb-4">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-                
-              </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-              </div>
+                            </div>
+                            <div class="form-group last mb-4">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password">
 
-              <input type="submit" value="Log In" class="btn text-white btn-block" style="background-color: #007bff">
+                            </div>
 
-              <span class="d-block text-left my-4 text-muted"> or sign in with</span>
-              
-              <div class="social-login">
-                <a href="#" class="facebook">
-                  <span class="icon-facebook mr-3"></span> 
-                </a>
-                <a href="#" class="twitter">
-                  <span class="icon-twitter mr-3"></span> 
-                </a>
-                <a href="#" class="google">
-                  <span class="icon-google mr-3"></span> 
-                </a>
-              </div>
-            </form>
+                            <div class="d-flex mb-5 align-items-center">
+                                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
+                                    <input type="checkbox" checked="checked"/>
+                                    <div class="control__indicator"></div>
+                                </label>
+                                <span class="ml-auto"><a href="{% url "members:reset_password" %}" class="forgot-pass">Mot de passe oublié?</a></span>
+                            </div>
+
+                            <input type="submit" value="Se connecter" class="btn text-white btn-block"
+                                   style="background-color: #007bff">
+
+                            <span class="d-block text-left my-4 text-muted"><a
+                                    href="{% url "members:register" %}"><strong>Ouvrir un compte</strong></a></span>
+
+
+                            <div class="social-login">
+                                <a href="#" class="facebook">
+                                    <span class="icon-facebook mr-3"></span>
+                                </a>
+                                <a href="#" class="twitter">
+                                    <span class="icon-twitter mr-3"></span>
+                                </a>
+                                <a href="#" class="google">
+                                    <span class="icon-google mr-3"></span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-          
         </div>
-        
-      </div>
     </div>
-  </div>
-    {% include "footer.html"%}
-  
-    <script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
-    <script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
-    <script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
-    <script src="{% static "members/auth/login/js/main.js" %}"></script>
-  </body>
+</div>
+{% include "footer.html" %}
+
+<script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/main.js" %}"></script>
+</body>
 </html>
