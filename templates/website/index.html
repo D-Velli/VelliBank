@@ -1,203 +1,236 @@
 {% load static %}
 <!doctype html>
 <html lang="fr">
-  <head>
-      <title>VelliBank</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta charset="utf-8">
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-      <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/jquery-ui.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/owl.carousel.min.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/owl.theme.default.min.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/jquery.fancybox.min.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/bootstrap-datepicker.css.map' %}">
-      <link rel="stylesheet" href="{% static 'website/fonts/flaticon/font/flaticon.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/aos.css' %}">
-      <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
-      <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
-      <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
-  </head>
-  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-      <div id="overlayer"></div>
-      <div class="loader">
-        <div class="spinner-border text-primary" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-      <div class="site-wrap">
-        <div class="site-mobile-menu site-navbar-target">
-          <div class="site-mobile-menu-header">
+<head>
+    <title>VelliBank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap-datepicker.css.map' %}">
+    <link rel="stylesheet" href="{% static 'website/fonts/flaticon/font/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'website/css/style.css' %}">
+    <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div id="overlayer"></div>
+<div class="loader">
+    <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div class="site-wrap">
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close mt-3">
-              <span class="icon-close2 js-menu-toggle"></span>
+                <span class="icon-close2 js-menu-toggle"></span>
             </div>
-          </div>
-          <div class="site-mobile-menu-body"></div>
         </div>
-        <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
-          <div class="container">
+        <div class="site-mobile-menu-body"></div>
+    </div>
+    <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
+        <div class="container">
             <div class="row align-items-center">
-              <div class="col-6 col-xl-2">
-                <h1 class="mb-0 site-logo"><a href="{% url "website:home" %}" class="h2 mb-0">VelliBank<span class="text-primary">.</span> </a></h1>
-              </div>
-              <div class="col-12 col-md-10 d-none d-xl-block">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                  <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                    <li><a href="#home-section" class="nav-link">Home</a></li>
-                    <li class="has-children">
-                      <a href="#about-section" class="nav-link">About Us</a>
-                      <ul class="dropdown">
-                        <li><a href="#gallery-section" class="nav-link">Gallery</a></li>
-                        <li><a href="#services-section" class="nav-link">Services</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#contact-section" class="nav-link">Contact</a></li>
-                      <li><a href="{% url "members:login" %}" class="nav-link">Se connecter</a></li>
-                  </ul>
-                </nav>
-              </div>
-              <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
-            </div>
-          </div>
-        </header>
-          
-        <div class="site-blocks-cover overlay" style="background-image: url({% static "website/images/hero_2.jpg" %}    );" data-aos="fade" id="home-section">
-
-          <div class="container">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-md-10 mt-lg-5 text-center">
-                <div class="single-text owl-carousel">
-                  <div class="slide">
-                    <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
-                    <p class="mb-5 desc"  data-aos="fade-up" data-aos-delay="100">Découvrez nos solutions bancaires complètes et adaptées à vos besoins. De la gestion de comptes à l'octroi de crédits, en passant par la banque en ligne, VelliBank vous accompagne avec des produits personnalisés pour simplifier votre quotidien financier.</p>
-                    <div data-aos="fade-up" data-aos-delay="100">
-                      <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
-                    </div>
-                  </div>
-                  <div class="slide">
-                    <h1 class="text-uppercase" data-aos="fade-up">Financing Solutions</h1>
-                    <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Nous offrons des solutions de financement flexibles et adaptées à vos projets. Que vous ayez besoin d'un prêt personnel, d'un crédit immobilier ou de financement pour votre entreprise, 
-                        VelliBank est là pour vous soutenir avec des options sur mesure.</p>
-                    <div data-aos="fade-up" data-aos-delay="100">
-                      <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
-                    </div>
-                  </div>
-                  <div class="slide">
-                    <h1 class="text-uppercase" data-aos="fade-up">Savings Accounts</h1>
-                    <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Épargnez en toute sérénité avec nos comptes d'épargne sécurisés et flexibles. Que ce soit pour atteindre vos objectifs à court ou long terme, 
-                        VelliBank vous propose des solutions d'épargne adaptées à vos besoins avec des taux compétitifs.</p>
-                    <div data-aos="fade-up" data-aos-delay="100">
-                      <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
-                    </div>
-                  </div>
+                <div class="col-6 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="{% url "website:home" %}" class="h2 mb-0">VelliBank<span
+                            class="text-primary">.</span> </a></h1>
                 </div>
-              </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="#home-section" class="nav-link">Home</a></li>
+                            <li class="has-children">
+                                <a href="#about-section" class="nav-link">About Us</a>
+                                <ul class="dropdown">
+                                    <li><a href="#gallery-section" class="nav-link">Gallery</a></li>
+                                    <li><a href="#services-section" class="nav-link">Services</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                            <li><a href="{% url "members:login" %}" class="nav-link">Se connecter</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a
+                        href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
+                </div>
             </div>
-          </div>
+        </div>
+    </header>
 
-      <a href="#next" class="mouse smoothscroll">
+    <div class="site-blocks-cover overlay" style="background-image: url({% static "website/images/hero_2.jpg" %}    );"
+         data-aos="fade" id="home-section">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-10 mt-lg-5 text-center">
+                    <div class="single-text owl-carousel">
+                        <div class="slide">
+                            <h1 class="text-uppercase" data-aos="fade-up">Banking Solutions</h1>
+                            <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Découvrez nos solutions
+                                bancaires complètes et adaptées à vos besoins. De la gestion de comptes à l'octroi de
+                                crédits, en passant par la banque en ligne, VelliBank vous accompagne avec des produits
+                                personnalisés pour simplifier votre quotidien financier.</p>
+                            <div data-aos="fade-up" data-aos-delay="100">
+                                <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <h1 class="text-uppercase" data-aos="fade-up">Financing Solutions</h1>
+                            <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Nous offrons des solutions de
+                                financement flexibles et adaptées à vos projets. Que vous ayez besoin d'un prêt
+                                personnel, d'un crédit immobilier ou de financement pour votre entreprise,
+                                VelliBank est là pour vous soutenir avec des options sur mesure.</p>
+                            <div data-aos="fade-up" data-aos-delay="100">
+                                <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <h1 class="text-uppercase" data-aos="fade-up">Savings Accounts</h1>
+                            <p class="mb-5 desc" data-aos="fade-up" data-aos-delay="100">Épargnez en toute sérénité avec
+                                nos comptes d'épargne sécurisés et flexibles. Que ce soit pour atteindre vos objectifs à
+                                court ou long terme,
+                                VelliBank vous propose des solutions d'épargne adaptées à vos besoins avec des taux
+                                compétitifs.</p>
+                            <div data-aos="fade-up" data-aos-delay="100">
+                                <a href="#" target="_blank" class="btn  btn-primary mr-2 mb-2">Get In Touch</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#next" class="mouse smoothscroll">
         <span class="mouse-icon">
           <span class="mouse-wheel"></span>
         </span>
-      </a>
-    </div>  
-      
-        <div class="site-section cta-big-image" id="about-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-8 text-center">
-            <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">About Us</h2>
-            <p class="lead" data-aos="fade-up" data-aos-delay="100">VelliBank propose une plateforme en ligne pour gérer facilement les comptes et carnets des membres d'une mutuelle, permettant dépôts en ligne et gestion sécurisée des membres. Notre solution garantit une administration flexible et un accès intuitif pour les membres et visiteurs.</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-            <figure class="circle-bg">
-            <img src="{% static "website/images/img_2.jpg" %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </figure>
-          </div>
-          <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="text-black mb-4">We Solve Your Financial Problem</h3>
-              <p>Chez VelliBank, nous comprenons que chaque situation financière est unique et nécessite des solutions adaptées. Que vous ayez besoin de réorganiser vos finances, de consolider des dettes, d'obtenir un prêt pour un projet important ou de mieux gérer vos comptes au quotidien, nous sommes là pour vous accompagner à chaque étape.</p>
-              <p>Notre équipe d'experts propose des services personnalisés pour répondre à vos besoins spécifiques, qu'il s'agisse de trouver des solutions de crédit flexibles, de maximiser vos économies ou de vous offrir des conseils avisés pour atteindre vos objectifs financiers. Avec VelliBank, vous bénéficiez d'un soutien constant pour transformer vos défis financiers en opportunités.</p>
-              <p>Nous mettons un point d'honneur à vous fournir les outils nécessaires pour prendre des décisions éclairées et vous offrir une tranquillité d'esprit dans la gestion de votre avenir financier.</p>
-          </div>
-        </div>    
-        
-      </div>  
+        </a>
     </div>
 
-        <div class="site-section" id="next">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="">
-            <img src="{% static "website/images/flaticon-svg/svg/001-wallet.svg" %}" alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Money Savings</h3>
-            <p>Épargnez en toute sérénité avec nos comptes d'épargne flexibles et sécurisés, conçus pour faire fructifier votre argent tout en vous aidant à atteindre vos objectifs financiers.</p>
-          </div>
-          <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
-            <img src="{% static "website/images/flaticon-svg/svg/004-cart.svg" %}" alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Online Shoppings</h3>
-            <p>Effectuez vos achats en ligne en toute sécurité grâce à nos solutions de paiement rapides et fiables, adaptées à vos besoins quotidiens.</p>
-          </div>
-          <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
-            <img src="{% static "website/images/flaticon-svg/svg/006-credit-card.svg" %}" alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
-            <h3 class="card-title">Credit / Debit Cards</h3>
-            <p>Choisissez parmi nos cartes de crédit et de débit, offrant des avantages exclusifs et une flexibilité maximale pour gérer vos dépenses facilement et en toute sécurité.</p>
-          </div>
+    <div class="site-section cta-big-image" id="about-section">
+        <div class="container">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h2 class="section-title mb-3" data-aos="fade-up" data-aos-delay="">About Us</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="100">VelliBank propose une plateforme en ligne
+                        pour gérer facilement les comptes et carnets des membres d'une mutuelle, permettant dépôts en
+                        ligne et gestion sécurisée des membres. Notre solution garantit une administration flexible et
+                        un accès intuitif pour les membres et visiteurs.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                    <figure class="circle-bg">
+                        <img src="{% static "website/images/img_2.jpg" %}"
+                             alt="Free Website Template by Free-Template.co" class="img-fluid">
+                    </figure>
+                </div>
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-black mb-4">We Solve Your Financial Problem</h3>
+                    <p>Chez VelliBank, nous comprenons que chaque situation financière est unique et nécessite des
+                        solutions adaptées. Que vous ayez besoin de réorganiser vos finances, de consolider des dettes,
+                        d'obtenir un prêt pour un projet important ou de mieux gérer vos comptes au quotidien, nous
+                        sommes là pour vous accompagner à chaque étape.</p>
+                    <p>Notre équipe d'experts propose des services personnalisés pour répondre à vos besoins
+                        spécifiques, qu'il s'agisse de trouver des solutions de crédit flexibles, de maximiser vos
+                        économies ou de vous offrir des conseils avisés pour atteindre vos objectifs financiers. Avec
+                        VelliBank, vous bénéficiez d'un soutien constant pour transformer vos défis financiers en
+                        opportunités.</p>
+                    <p>Nous mettons un point d'honneur à vous fournir les outils nécessaires pour prendre des décisions
+                        éclairées et vous offrir une tranquillité d'esprit dans la gestion de votre avenir
+                        financier.</p>
+                </div>
+            </div>
 
         </div>
-
-        <div class="row">
-          <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
-            <figure class="circle-bg">
-            <img src="{% static "website/images/about_2.jpg" %}" alt="Free Website Template by Free-Template.co" class="img-fluid">
-            </figure>
-          </div>
-          <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-            <div class="mb-4">
-              <h3 class="h3 mb-4 text-black">Banking Solutions Is Our Priority</h3>
-              <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-            </div>
-              
-            <div class="mb-4">
-              <ul class="list-unstyled ul-check success">
-                <li>Officia quaerat eaque neque</li>
-                <li>Lorem ipsum dolor sit amet</li>
-                <li>Consectetur adipisicing elit</li>
-              </ul>
-              
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-      
-        {% include "website/gallery.html" %}
-      
-        {% include "website/how-its-work.html" %}
-      
-        {% include "website/service.html" %}
-      
-        {% include "website/about.html" %}
 
-        {% include "website/contact-us.html" %}
-          
-        {% include "footer.html" %}
+    <div class="site-section" id="next">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="">
+                    <img src="{% static "website/images/flaticon-svg/svg/001-wallet.svg" %}"
+                         alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
+                    <h3 class="card-title">Money Savings</h3>
+                    <p>Épargnez en toute sérénité avec nos comptes d'épargne flexibles et sécurisés, conçus pour faire
+                        fructifier votre argent tout en vous aidant à atteindre vos objectifs financiers.</p>
+                </div>
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{% static "website/images/flaticon-svg/svg/004-cart.svg" %}"
+                         alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
+                    <h3 class="card-title">Online Shoppings</h3>
+                    <p>Effectuez vos achats en ligne en toute sécurité grâce à nos solutions de paiement rapides et
+                        fiables, adaptées à vos besoins quotidiens.</p>
+                </div>
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <img src="{% static "website/images/flaticon-svg/svg/006-credit-card.svg" %}"
+                         alt="Free Website Template by Free-Template.co" class="img-fluid w-25 mb-4">
+                    <h3 class="card-title">Credit / Debit Cards</h3>
+                    <p>Choisissez parmi nos cartes de crédit et de débit, offrant des avantages exclusifs et une
+                        flexibilité maximale pour gérer vos dépenses facilement et en toute sécurité.</p>
+                </div>
 
-      </div> <!-- .site-wrap -->
+            </div>
 
-      <script src="{% static 'website/js/jquery-3.3.1.min.js' %}"></script>
-      <script src="{% static 'website/js/jquery-ui.js' %}"></script>
-      <script src="{% static 'website/js/popper.min.js.map' %}"></script>
-      <script src="{% static 'website/js/bootstrap.min.js.map' %}"></script>
-      <script src="{% static 'website/js/owl.carousel.min.js' %}"></script>
-      <script src="{% static 'website/js/jquery.countdown.min.js' %}"></script>
-      <script src="{% static 'website/js/jquery.easing.1.3.js' %}"></script>
-      <script src="{% static 'website/js/aos.js.map' %}"></script>
-      <script src="{% static 'website/js/jquery.fancybox.min.js' %}"></script>
-      <script src="{% static 'website/js/jquery.sticky.js' %}"></script>
-      <script src="{% static 'website/js/isotope.pkgd.min.js' %}"></script>
-      <script src="{% static 'website/js/main.js' %}"></script>
-  </body>
+            <div class="row">
+                <div class="col-lg-6 mb-5" data-aos="fade-up" data-aos-delay="">
+                    <figure class="circle-bg">
+                        <img src="{% static "website/images/about_2.jpg" %}"
+                             alt="Free Website Template by Free-Template.co" class="img-fluid">
+                    </figure>
+                </div>
+                <div class="col-lg-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                    <div class="mb-4">
+                        <h3 class="h3 mb-4 text-black">Banking Solutions Is Our Priority</h3>
+                        <p>A small river named Duden flows by their place and supplies it with the necessary
+                            regelialia.</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <ul class="list-unstyled ul-check success">
+                            <li>Officia quaerat eaque neque</li>
+                            <li>Lorem ipsum dolor sit amet</li>
+                            <li>Consectetur adipisicing elit</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include "website/gallery.html" %}
+
+    {% include "website/how-its-work.html" %}
+
+    {% include "website/service.html" %}
+
+    {% include "website/about.html" %}
+
+    {% include "website/contact-us.html" %}
+
+    {% include "footer.html" %}
+
+</div> <!-- .site-wrap -->
+
+<script src="{% static 'website/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'website/js/jquery-ui.js' %}"></script>
+<script src="{% static 'website/js/popper.min.js.map' %}"></script>
+<script src="{% static 'website/js/bootstrap.min.js.map' %}"></script>
+<script src="{% static 'website/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'website/js/jquery.countdown.min.js' %}"></script>
+<script src="{% static 'website/js/jquery.easing.1.3.js' %}"></script>
+<script src="{% static 'website/js/aos.js.map' %}"></script>
+<script src="{% static 'website/js/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'website/js/jquery.sticky.js' %}"></script>
+<script src="{% static 'website/js/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'website/js/main.js' %}"></script>
+</body>
 </html>

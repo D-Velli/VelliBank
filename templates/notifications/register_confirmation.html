@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+<div class="container" style="background-color: #ffffff; margin: 50px auto; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+    <div class="header" style="text-align: center;">
+        <img src="cid:logo_image" alt="Logo de la Banque" style="max-width: 150px;">
+    </div>
+    <div class="content" style="margin-top: 20px;">
+        <h1>Bienvenue, {{ client_name }} !</h1>
+        <p>Nous avons le plaisir de vous confirmer l'ouverture de votre compte bancaire.</p>
+        <p>Merci d'avoir choisi notre banque. Votre confiance nous honore et nous nous engageons à vous offrir les meilleurs services.</p>
+        <p>Voici vos identifiants de connexion :</p>
+        <p><strong>Email :</strong> {{ client_email }}</p>
+        <p><strong>Mot de passe :</strong> {{ client_mdp }}</p>
+        <p>Pour accéder à votre compte en ligne, veuillez cliquer sur le bouton ci-dessous :</p>
+        <a href="http://localhost:8000/members/auth/login" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 5px; margin-top: 20px;">Accéder à mon compte</a>
+    </div>
+    <div class="footer" style="text-align: center; margin-top: 30px; font-size: 12px; color: #777777;">
+        <p>Si vous avez des questions, n'hésitez pas à nous contacter à l'adresse mamadoudiallo1@esp.sn.</p>
+        <p>&copy; 2024 VelliBank. Tous droits réservés.</p>
+    </div>
+</div>
+</body>
+</html>

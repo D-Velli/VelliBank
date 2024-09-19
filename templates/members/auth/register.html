@@ -32,42 +32,98 @@
                 <div class="row justify-content-center">
                     <div class="col-md-9">
                         <div class="mb-5">
-                            <h3>Ouvrir un compte <strong>VelliBank</strong></h3>
+                            <h3 class="text-black mb-4">Ouvrir un compte <strong>VelliBank</strong></h3>
                             <p class="mb-4">Ouvrez votre compte en quelques minutes et profitez de nos services
                                 bancaires personnalisés pour répondre à tous vos besoins financiers.</p>
                         </div>
                         <br>
-                        <form action="#" method="post">
+                        <form id="registerForm" action="{% url "members:register" %}" method="post"
+                              class="was-validated">
                             {% csrf_token %}
+
+                            {% if request.session.success %}
+                                <div class="alert alert-success" role="alert">
+                                    <h4 class="alert-heading">{{ request.session.success.title }}</h4>
+                                    <p>{{ request.session.success.content }}</p>
+                                </div>
+                            {% endif %}
+
                             <div class="form-group first">
                                 <label for="nom">Nom</label>
-                                <input type="text" class="form-control" id="nom" required/>
+                                <input type="text" class="form-control {% if errors.nom %}is-invalid{% endif %}"
+                                       id="nom" name="nom"
+                                       value="{{ form_data.nom }}" required/>
+                                {% if errors.nom %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.nom }}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group first">
                                 <label for="prenom">Prenom</label>
-                                <input type="text" class="form-control" id="prenom" required/>
+                                <input type="text" class="form-control {% if errors.prenom %}is-invalid{% endif %}"
+                                       id="prenom" name="prenom"
+                                       value="{{ form_data.prenom }}" required/>
+                                {% if errors.prenom %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.prenom }}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group first">
                                 <label for="dob">Date de naissance</label>
-                                <input type="date" class="form-control" id="dob" required/>
+                                <input type="date" class="form-control {% if errors.date %}is-invalid{% endif %}"
+                                       id="dob" name="date_birth"
+                                       value="{{ form_data.date_birth }}" required/>
+                                {% if errors.date %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.date }}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group first">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" required/>
+                                <input type="email" class="form-control {% if errors.email %}is-invalid{% endif %}"
+                                       id="email" name="email"
+                                       value="{{ form_data.email }}" required/>
+                                {% if errors.email %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.email }}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group first">
                                 <label for="confirm-email">Confirmer Email</label>
-                                <input type="email" class="form-control" id="confirm-email" required/>
+                                <input type="email" class="form-control {% if errors.email %}is-invalid{% endif %}"
+                                       id="confirm-email"
+                                       value="{{ form_data.confirm_email }}" name="confirm_email" required/>
+                                {% if errors.email %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.email }}
+                                    </div>
+                                {% endif %}
                             </div>
+
                             <div class="form-group last mb-4">
                                 <label for="telephone">Téléphone</label>
-                                <input type="tel" class="form-control" id="telephone" pattern="[0-9]{10}" required/>
+                                <input type="tel" class="form-control {% if errors.telephone %}is-invalid{% endif %}"
+                                       id="telephone"
+                                       name="telephone" pattern="[0-9]{10}" value="{{ form_data.telephone }}" required/>
+                                {% if errors.telephone %}
+                                    <div class="invalid-feedback">
+                                        {{ errors.telephone }}
+                                    </div>
+                                {% endif %}
                             </div>
 
                             <input type="submit" value="S'inscrire" class="btn btn-block btn-primary"/>
-                            <span class="d-block text-left my-4"><a href="{% url "members:login" %}"><strong>Se Connecter</strong></a></span>
-
+                            <span class="d-block text-left my-4 text-black mb-4"><a href="{% url "members:login" %}"><strong>Se Connecter</strong></a></span>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -75,6 +131,13 @@
     </div>
 </div>
 {% include "footer.html" %}
+<script>
+    document.getElementById('registerForm').onsubmit = function () {
+        setTimeout(function () {
+            document.getElementById('registerForm').reset();  // Réinitialiser les champs du formulaire
+        }, 100);  // Temps d'attente avant de vider le formulaire (ajustez si nécessaire)
+    };
+</script>
 <script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
 <script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
 <script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
