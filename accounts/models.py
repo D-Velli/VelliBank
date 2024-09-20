@@ -1,6 +1,7 @@
 from datetime import timedelta
 import random
 
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 
@@ -26,6 +27,10 @@ class Compte(models.Model):
     status_compte = models.CharField(max_length=50, choices=STATUS_COMPTE, default="actif")
     date_creation = models.DateTimeField(auto_now_add=True)
 
+    def clean(self):
+        # Vérifier que le client n'a pas déjà un compte de type "courant"
+        if self.type_compte == 'courant' and Compte.objects.filter(client=self.client, type_compte='courant').exists():
+            raise ValidationError('Ce client a déjà un compte de type courant.')
 
     def __str__(self):
         return f"{self.numero_compte} {self.type_compte} {self.status_compte} {self.date_creation}"

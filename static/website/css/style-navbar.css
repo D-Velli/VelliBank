@@ -1,0 +1,97 @@
+/* Base styles */
+/*body {*/
+/*  line-height: 1.7;*/
+/*  color: gray;*/
+/*  font-weight: 400;*/
+/*  font-size: 1rem;*/
+/*  overflow-x: hidden;*/
+/*}*/
+
+/* Styles pour les liens */
+a {
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Navbar styles */
+.site-navbar {
+  margin-bottom: 0;
+  z-index: 1999;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  border-bottom: rgba(255, 255, 255, 0.7);
+  background-color: #0d95e8; /* Background color for navbar */
+}
+
+.site-navbar .site-logo {
+  position: relative;
+  left: 0;
+  top: -5px;
+}
+
+.site-navbar .site-navigation .site-menu > li {
+  display: inline-block;
+}
+
+.site-navbar .site-navigation .site-menu > li > a {
+  padding: 20px 20px;
+  color: #000;
+  display: inline-block;
+  text-decoration: none !important;
+}
+
+.site-navbar .site-navigation .site-menu > li > a:hover {
+  color: #007bff;
+}
+
+/* Logo style */
+.site-logo img {
+  width: 200px; /* Adjusts the size of the logo */
+}
+
+/* Button styles */
+.btn {
+  font-size: 16px;
+  border-radius: 30px;
+  padding: 10px 30px;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.btn.btn-primary {
+  background: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn.btn-primary:hover {
+  background: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+/* Sticky Header styles */
+.js-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #0d95e8; /* Ensures sticky header retains background color */
+}
+
+/* Site section styles */
+.site-section {
+  padding: 2.5em 0;
+}
+
+@media (min-width: 768px) {
+  .site-section {
+    padding: 8em 0;
+  }
+}
+

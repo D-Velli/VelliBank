@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
     <link rel="stylesheet" href="{% static "website/css/style.css" %}">
     <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static "members/pages/css/style.css" %}">
     <title>Dashboard | VelliBank</title>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -23,7 +21,9 @@
 </div>
 <div class="content">
     <div class="container">
-        <h1>Bonjour, {{ request.session.client_name }}</h1>
+        {% block content %}
+            {% include "members/partials/content.html" %}
+        {% endblock %}
     </div>
     
 </div>
