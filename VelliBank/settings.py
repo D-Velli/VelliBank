@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'members',
     'website',
-    'notifications'
+    'notifications',
+    'accounts'
 ]
 
 MIDDLEWARE = [
