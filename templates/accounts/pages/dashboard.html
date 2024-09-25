@@ -21,9 +21,13 @@
 </div>
 <div class="content">
     <div class="container">
-        {% if special_content %}
+        {% if special_content and status == "visiteur" %}
             {% block content_invite %}
                 {% include "accounts/partials/content_invite.html" %}
+            {% endblock %}
+        {% elif special_content and status == "bloque" %}
+            {% block content_bloque %}
+                {% include "accounts/partials/content_bloque.html" %}
             {% endblock %}
         {% else %}
             {% block content %}
@@ -31,7 +35,7 @@
             {% endblock %}
         {% endif %}
     </div>
-    
+
 </div>
 
 {% include "footer.html" %}

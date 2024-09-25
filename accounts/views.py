@@ -1,22 +1,29 @@
 from django.shortcuts import render
-
 from accounts.models import Compte, Carte
-from members.decorateurs import client_login_required, client_invite
+from members.decorateurs import client_login_required, client_content
 
 
-@client_invite
+@client_content
 @client_login_required
 def dashboard(request):
     context = {}
-    if getattr(request, 'is_invite', False):
+    if getattr(request, 'is_visiteur', False):
         print("j'y suis enfin")
-        # Contenu spécial pour les invités
+        # Contenu spécial pour les visiteurs
         context.update({
             'client': request.session.get('client_name'),
             'special_content': True,
+            'status': "visiteur",
+        })
+    elif getattr(request, 'is_bloqued', False):
+        print("le client est bloque ou inactif")
+        context.update({
+            'client_name': request.session.get('client_name'),
+            'special_content': True,
+            'status': "bloque",
         })
     else:
-
+        print(request.session.get('is_invite'))
         carte_credit = None
         somme_total_compte = 0
         somme_total_carte = 0
@@ -49,6 +56,7 @@ def dashboard(request):
 
         context.update({
             'special_content': False,
+            'status': False,
             'compte_courant': compte_courant,
             'comptes_epargne': comptes_epargne,
             'compte_credit': compte_credit,
@@ -57,7 +65,5 @@ def dashboard(request):
         print(compte_courant.solde)
         print(compte_courant.type_compte)
         print(carte_credit.type_carte)
-        # request.session["client_num_compte"] = client_compte_courant.numero_compte
-        # request.session["client_solde"] = float(client_compte_courant.solde)
         request.session["client_solde_total"] = "{:,.2f}".format(somme_total_compte).replace(",", " ")
     return render(request, 'accounts/pages/dashboard.html', context)
