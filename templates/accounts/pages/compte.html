@@ -1,0 +1,64 @@
+{% load static filter_format %}
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "members/auth/login/fonts/icomoon/style.css" %}">
+    <link rel="stylesheet" href="{% static "members/auth/login/css/owl.carousel.min.css" %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
+    <title>Compte d'opérations courantes</title>
+    <link rel="stylesheet" href="{% static "accounts/compte/css/style.css" %}">
+</head>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    {% include "accounts/partials/navbar.html" %}
+</div>
+<div class="content">
+    <div class="container">
+        <h1>{{ compte.numero_compte }}</h1>
+        <h2>Compte d'opérations courantes</h2>
+        <p>Montreal</p>
+
+        <div class="balance-card">
+            <div class="balance-info">
+                <h3>Solde du compte</h3>
+                <p> <strong>{{ compte.solde | format_solde}} $</strong></p>
+                <p>10 transactions effectuées sur votre forfait illimité (comptoir inclus)</p>
+            </div>
+            <button class="button">Gérer la carte</button>
+        </div>
+
+        <div class="tab-links">
+            <a href="#" class="active" onclick="showTab(event, 'transactions')">Transactions</a>
+            <a href="#" onclick="showTab(event, 'releves')">Relevés</a>
+            <a href="#" onclick="showTab(event, 'informations')">Informations</a>
+        </div>
+
+        <!-- Transactions Tab -->
+        {% include "accounts/partials/compte_transactions.html" %}
+
+        <!-- Relevés Tab -->
+        {% include "accounts/partials/compte_releves.html" %}
+        <!-- Informations Tab -->
+        {% include "accounts/partials/compte_informations.html" %}
+    </div>
+</div>
+
+{% include "footer.html" %}
+<script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/main.js" %}"></script>
+<script src="{% static "accounts/compte/js/scripts.js" %}"></script>
+</body>
+
+</html>

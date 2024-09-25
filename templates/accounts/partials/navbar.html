@@ -21,7 +21,7 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <li><a href="#">{{ request.session.client_name }}</a></li>
-                        <li><a href="#" class="nav-link">Accueil</a></li>
+                        <li><a href="{% url "accounts:dashboard" %}" class="nav-link">Accueil</a></li>
                         <li><a href="{% url "members:logout" %}" class="nav-link">Se deconnecter</a></li>
                     </ul>
                 </nav>

@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.core import serializers
+from django.template.context_processors import request
+
+from .utils import compte_json
 from accounts.models import Compte, Carte
 from members.decorateurs import client_login_required, client_content
 
@@ -62,8 +66,13 @@ def dashboard(request):
             'compte_credit': compte_credit,
             'carte_credit': carte_credit,
         })
-        print(compte_courant.solde)
-        print(compte_courant.type_compte)
-        print(carte_credit.type_carte)
+        request.session['compte_courant'] = compte_json(compte_courant)
+
         request.session["client_solde_total"] = "{:,.2f}".format(somme_total_compte).replace(",", " ")
     return render(request, 'accounts/pages/dashboard.html', context)
+
+
+def compte(request, numero_compte):
+    compte = get_object_or_404(Compte, numero_compte=numero_compte)
+    print(compte)
+    return render(request, 'accounts/pages/compte.html', {'compte': compte})

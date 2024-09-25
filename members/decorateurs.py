@@ -36,7 +36,7 @@ def client_content(view_func):
         else:
             request.is_invite = False
             request.is_bloqued = False
-            print("Client non invité ou statut introuvable.")
+            print("Client membre.")
 
         # Appel de la vue d'origine
         return view_func(request, *args, **kwargs)
