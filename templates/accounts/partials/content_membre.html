@@ -1,3 +1,4 @@
+{% load filter_format %}
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -132,7 +133,7 @@
                 <p class="account-details-info">{{ compte_courant.numero_compte }}<br/>Montreal</p>
             </div>
             <div class="account-balance">
-                <p class="account-balance-amount">{{ compte_courant.solde }} $</p>
+                <p class="account-balance-amount">{{ compte_courant.solde|format_solde }} $</p>
             </div>
         </div>
     {% else %}
@@ -145,10 +146,10 @@
         {% for compte in comptes_epargne %}
             <div class="account-item">
                 <div class="account-details">
-                    <p class="account-details-info">{{ compte.numero_compte }}<br/>Trois-Rivières</p>
+                    <p class="account-details-info">{{ compte.numero_compte }}<br/>Montreal</p>
                 </div>
                 <div class="account-balance">
-                    <p class="account-balance-amount">{{ compte.solde }} $</p>
+                    <p class="account-balance-amount">{{ compte.solde|format_solde }} $</p>
                 </div>
             </div>
         {% endfor %}
@@ -165,31 +166,31 @@
 
     <!-- Cards and Credit Section -->
     <div class="credit-overview">
-        <h2 class="section-title">Cartes, prêts et marges de crédit</h2>
+        <h2 class="section-title">Cartes Credits</h2>
         <div class="account-item">
             <div class="account-details">
-                <h3 class="account-details-title">Desjardins Remises MasterCard</h3>
-                <p class="account-details-info">5598 22** **** 3038</p>
+                <h3 class="account-details-title">VelliBank {{ carte_credit.type_carte }}</h3>
+                <p class="account-details-info">{{ carte_credit.numero_carte|format_carte_credit }}</p>
             </div>
             <div class="account-balance">
-                <p class="account-balance-amount">1 727,06 $</p>
+                <p class="account-balance-amount">{{ carte_credit.solde_disponible|format_solde }} $</p>
             </div>
         </div>
-        <div class="account-item">
-            <div class="account-details">
-                <h3 class="account-details-title">
-                    AccordD - Plan 002 5598 22** **** 3038
-                </h3>
-                <p class="account-details-info">
-                    ACCORD D CAISSE 815 10 TROIS-RIVIEREQC
-                </p>
-            </div>
-            <div class="account-balance">
-                <p class="account-balance-amount">4 748,17 $</p>
-            </div>
-        </div>
+{#        <div class="account-item">#}
+{#            <div class="account-details">#}
+{#                <h3 class="account-details-title">#}
+{#                    AccordD - Plan 002 5598 22** **** 3038#}
+{#                </h3>#}
+{#                <p class="account-details-info">#}
+{#                    ACCORD D CAISSE 815 10 TROIS-RIVIEREQC#}
+{#                </p>#}
+{#            </div>#}
+{#            <div class="account-balance">#}
+{#                <p class="account-balance-amount">4 748,17 $</p>#}
+{#            </div>#}
+{#        </div>#}
         <div class="account-total-balance">
-            <p>Total : 6 475,23 $ CA</p>
+            <p>Total :  $ CA</p>
         </div>
     </div>
 
@@ -201,13 +202,7 @@
             <li class="sidebar-menu-item">Messages</li>
             <li class="sidebar-menu-item">Relevés et documents</li>
             <li class="sidebar-menu-item">Profil et préférences</li>
-            <li class="sidebar-menu-item">Échéances</li>
             <li class="sidebar-menu-item">Rendez-vous</li>
-            <li class="sidebar-menu-item">Ma sécurité</li>
-            <li class="sidebar-menu-item">Mon dossier de crédit</li>
-            <li class="sidebar-menu-item">Mon toit</li>
-            <li class="sidebar-menu-item">Mes projets</li>
-            <li class="sidebar-menu-item">Ma ristourne d velli</li>
         </ul>
     </div>
 </div>

@@ -27,6 +27,19 @@ class Compte(models.Model):
     status_compte = models.CharField(max_length=50, choices=STATUS_COMPTE, default="actif")
     date_creation = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        super(Compte, self).save(*args, **kwargs)
+        # Si le compte est de type "crédit", synchroniser le solde avec le solde disponible de la carte
+        if self.type_compte == 'credit':
+            # Récupérer la carte associée (si elle existe)
+            carte = self.carte_set.first()  # Récupérer la première carte liée
+            if carte:
+                carte.solde_disponible = self.solde
+                carte.save()
+
+
+
+
     def clean(self):
         # Vérifier que le client n'a pas déjà un compte de type "courant"
         if self.type_compte == 'courant' and Compte.objects.filter(client=self.client, type_compte='courant').exists():
@@ -40,8 +53,8 @@ class Compte(models.Model):
 
 class Carte(models.Model):
     TYPE_CARTE = [
-        ("visa", "Visa"),
-        ("mastercard", "Mastercard"),
+        ("Visa", "Visa"),
+        ("MasterCard", "MasterCard"),
     ]
 
     STATUS_CARTE = [
@@ -51,7 +64,7 @@ class Carte(models.Model):
     ]
     compte = models.ForeignKey(Compte, on_delete=models.CASCADE)
     type_carte = models.CharField(max_length=50, choices=TYPE_CARTE)
-    numero_carte = models.CharField(max_length=16, unique=True)
+    numero_carte = models.CharField(max_length=20, unique=True)
     cvv = models.IntegerField()
     date_emission = models.DateTimeField(auto_now_add=True)
     limite_credit = models.DecimalField(max_digits=10, decimal_places=2, default=500.00)
@@ -60,6 +73,19 @@ class Carte(models.Model):
     code_pin = models.IntegerField()
     date_expiration = models.DateField()
 
+
+    def save(self, *args, **kwargs):
+        # Synchroniser le solde du compte crédit avec le solde disponible de la carte
+        if self.compte.type_compte == 'credit':
+            self.compte.solde = self.solde_disponible
+            self.compte.save()  # Sauvegarder le compte mis à jour
+
+        super(Carte, self).save(*args, **kwargs)
+
+    def clean(self):
+        # Vérifier que le compte associé est de type "crédit"
+        if self.compte.type_compte != 'credit':
+            raise ValidationError("Les cartes ne peuvent être associées qu'à des comptes de type 'crédit'.")
 
     def __str__(self):
         return f"{self.numero_carte} {self.type_carte} {self.status} {self.date_emission}"

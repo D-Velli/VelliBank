@@ -7,11 +7,11 @@ import random
 def create_compte(sender, instance, created, **kwargs):
     if created:
         # Générer un numéro de compte unique
-        numero_compte = ''.join([str(random.randint(0, 9)) for _ in range(10)])
+        numero_compte = ''.join([str(random.randint(0, 9)) for _ in range(6)]) + "-COC"
 
         # Vérifier que le numéro est unique
         while Compte.objects.filter(numero_compte=numero_compte).exists():
-            numero_compte = ''.join([str(random.randint(0, 9)) for _ in range(10)])
+            numero_compte = ''.join([str(random.randint(0, 9)) for _ in range(6)]) + "-COC"
 
         # Créer un compte pour le client
         Compte.objects.create(

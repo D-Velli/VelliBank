@@ -17,13 +17,19 @@
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div class="site-wrap">
-    {% include "members/partials/navbar.html" %}
+    {% include "accounts/partials/navbar.html" %}
 </div>
 <div class="content">
     <div class="container">
-        {% block content %}
-            {% include "members/partials/content.html" %}
-        {% endblock %}
+        {% if special_content %}
+            {% block content_invite %}
+                {% include "accounts/partials/content_invite.html" %}
+            {% endblock %}
+        {% else %}
+            {% block content %}
+                {% include "accounts/partials/content_membre.html" %}
+            {% endblock %}
+        {% endif %}
     </div>
     
 </div>

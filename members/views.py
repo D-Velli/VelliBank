@@ -129,9 +129,10 @@ def login(request):
                 if check_password(password, client.password):
                     request.session["client_id"] = client.id
                     request.session["client_name"] = f"{client.prenom} {client.nom}"
+                    request.session["client_status"] = client.status
                     client.is_first = False
                     client.save()
-                    return redirect("members:dashboard")
+                    return redirect("accounts:dashboard")
                 else:
                     errors['email'] = "Email ou Mot de passe invalide"
             except ObjectDoesNotExist:
@@ -148,34 +149,6 @@ def login(request):
 def logout(request):
     request.session.flush()  # Efface toute la session
     return redirect('members:login')
-
-@client_login_required
-def dashboard(request):
-    # Je recup l'id du client connecter depuis la session
-    client_id = request.session["client_id"]
-    # Maintenant je vais recup son compte courant sachant qu'il en a que un
-    try:
-        compte_courant = Compte.objects.get(client_id=client_id, type_compte="courant")
-    except Compte.DoesNotExist:
-        compte_courant = None
-
-    # Ensuite je recupere le ou les comptes epargne du client
-    try:
-        comptes_epargne = Compte.objects.filter(client_id=client_id, type_compte="epargne")
-    except Compte.DoesNotExist:
-        comptes_epargne = None
-
-    context = {
-        'compte_courant': compte_courant,
-        'comptes_epargne': comptes_epargne,
-    }
-
-    print(compte_courant.solde)
-    print(compte_courant.type_compte)
-    # request.session["client_num_compte"] = client_compte_courant.numero_compte
-    # request.session["client_solde"] = float(client_compte_courant.solde)
-    # request.session["client_solde_total"] = float(client_compte.solde) + float(12)
-    return render(request, 'members/pages/dashboard.html', context)
 
 
 
