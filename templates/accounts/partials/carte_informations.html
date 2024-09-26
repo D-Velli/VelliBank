@@ -1,0 +1,34 @@
+{% load filter_format %}
+<div id="informations" class="tab-content">
+    <h3>Informations sur la carte</h3>
+    <table>
+        <tr>
+            <td>Crédit disponible</td>
+            <td>{{ carte.solde_disponible | format_carte_credit }} $</td>
+        </tr>
+        <tr>
+            <td>Limite de crédit autorisée</td>
+            <td>{{ carte.limite_credit | format_carte_credit }} $</td>
+        </tr>
+        <tr>
+            <td>Taux d'intérêt annuel sur achats</td>
+            <td>20,9 %</td>
+        </tr>
+        <tr>
+            <td>Taux d'intérêt annuel sur avances d'argent</td>
+            <td>21,9 %</td>
+        </tr>
+        <tr>
+            <td>Solde au dernier relevé</td>
+            <td>{{ carte.solde_disponible | format_carte_credit }} $</td>
+        </tr>
+        <tr>
+            <td>Date d'emission de la carte</td>
+            <td>{{ carte.date_emission }}</td>
+        </tr>
+        <tr>
+            <td>Date d'expiration de la carte</td>
+            <td>{{ carte.date_expiration }}</td>
+        </tr>
+    </table>
+</div>

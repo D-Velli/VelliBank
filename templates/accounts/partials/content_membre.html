@@ -51,7 +51,7 @@
         <h2 class="section-title">Cartes Credits</h2>
         <div class="account-item">
             <div class="account-details">
-                <h3 class="account-details-title">VelliBank {{ carte_credit.type_carte }}</h3>
+                <a href="{% url "accounts:carte" carte_credit.id %}"><h3 class="account-details-title">VelliBank {{ carte_credit.type_carte }}</h3></a>
                 <p class="account-details-info">{{ carte_credit.numero_carte|format_carte_credit }}</p>
             </div>
             <div class="account-balance">

@@ -1,0 +1,128 @@
+{% load filter_format %}
+<style>
+    .balance-card {
+        display: flex;
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center elements horizontally */
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 800px;
+        box-sizing: border-box;
+    }
+
+    .progress-container {
+        position: relative;
+        width: 200px;
+        height: 100px;
+    }
+
+    .svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .progress-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .progress-info h3 {
+        margin: 5px 0;
+        font-size: 1.2em;
+    }
+
+    .progress-info p {
+        margin: 0;
+        font-size: 0.9em;
+    }
+
+    .credit-info {
+        text-align: center;
+        font-weight: bold;
+        color: #333;
+        margin-top: 20px; /* Space between circle and text */
+    }
+
+    .credit-info h3 {
+        margin: 5px 0;
+        font-size: 1.2em;
+    }
+
+    .credit-info p {
+        margin: 0;
+        font-size: 0.9em;
+    }
+</style>
+<!-- Progress Bar Container -->
+<div class="progress-container">
+    <!-- Half-circle SVG Progress Bar -->
+    <svg class="svg" viewBox="-10 -10 220 120">
+        <!-- Gradient for the progress bar -->
+        <defs>
+            <linearGradient id="grad">
+                <stop offset="70%" stop-color="#007BFF"></stop>
+                <stop offset="100%" stop-color="#0056b3"></stop>
+            </linearGradient>
+        </defs>
+
+        <!-- Background base circle (half circle) -->
+        <circle stroke="#aaaaaa" stroke-linecap="round" fill="transparent" cx="100" cy="100" r="100"
+                stroke-width="10" transform="rotate(180, 100, 100)"
+                stroke-dasharray="314.1592653589793 628.3185307179587"></circle>
+
+        <!-- Foreground progress circle (half circle) -->
+        <circle id="progressCircle" stroke="url(#grad)" fill="transparent" stroke-linecap="round" cx="100" cy="100"
+                r="100" stroke-width="10" stroke-dasharray="314.1592653589793 628.3185307179587"
+                stroke-dashoffset="314.1592653589793" transform="rotate(180, 100, 100)"></circle>
+    </svg>
+    <!-- Text inside the progress circle -->
+    <div class="progress-info">
+        <p>Solde à ce jour</p>
+        <h3 id="soldeValue">0 $</h3>
+    </div>
+</div>
+<!-- Text below the progress circle for credit available -->
+<div class="credit-info">
+    <p>Crédit disponible</p>
+    <h3 id="creditValue">0 $</h3>
+</div>
+<script>
+    /**
+     * Update the half-circle progress and display the balance.
+     * @param {number} currentValue - The current value to represent progress.
+     * @param {number} maxValue - The value that represents 100%.
+     */
+    function updateProgress(currentValue, maxValue) {
+        const circle = document.getElementById('progressCircle');
+        const totalLength = 314.1592653589793; // The length of the half-circle path
+
+        // Calculate percentage based on the current value and max value
+        const percentage = (currentValue / maxValue) * 100;
+
+        // Calculate the offset for the stroke-dashoffset
+        const offset = totalLength - (percentage / 100) * totalLength;
+
+        // Update the stroke-dashoffset to match the progress
+        circle.style.strokeDashoffset = offset;
+    }
+
+    // Get the dynamic values from server-side rendering
+    const maxValue = {{ carte.limite_credit | safe }}; // Limite de crédit representing 100%
+    const soldeValue = {{ carte.solde_disponible | safe }}; // Solde disponible representing the current balance
+
+    // Display the balance inside the progress circle
+    document.getElementById('soldeValue').textContent = `${soldeValue.toLocaleString()} $`;
+    document.getElementById('creditValue').textContent = `${(maxValue - soldeValue).toLocaleString()} $`;
+
+    // Initialize progress ring with values
+    updateProgress(soldeValue, maxValue);
+</script>

@@ -1,0 +1,85 @@
+{% load static filter_format %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "members/auth/login/fonts/icomoon/style.css" %}">
+    <link rel="stylesheet" href="{% static "members/auth/login/css/owl.carousel.min.css" %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "accounts/gestion_cate/css/style.css" %}">
+    <title>Gestion carte</title>
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    {% include "accounts/partials/navbar.html" %}
+</div>
+<div class="content">
+    <div class="container">
+        <h1>Gérer la carte</h1>
+
+        <!-- Card Information -->
+        <div class="card-info">
+            <div class="card-icon">💳</div>
+            <div class="card-details">
+                <h2>Remises Mastercard Desjardins</h2>
+                <p>**** **** **** 3038</p>
+            </div>
+        </div>
+
+        <!-- Options List -->
+        <ul class="options-list">
+            <li class="option-item">
+                <div class="option-label">
+                    <span class="option-item-icon">📄</span>
+                    <span>Suspendre et réactiver la carte</span>
+                </div>
+                <span class="option-arrow">›</span>
+            </li>
+            <li class="option-item">
+                <div class="option-label">
+                    <span class="option-item-icon">⚠️</span>
+                    <span>Signaler et remplacer une carte perdue ou volée</span>
+                </div>
+                <span class="option-arrow">›</span>
+            </li>
+            <li class="option-item">
+                <div class="option-label">
+                    <span class="option-item-icon">💳</span>
+                    <span>Remplacer une carte endommagée</span>
+                </div>
+                <span class="option-arrow">›</span>
+            </li>
+            <li class="option-item">
+                <div class="option-label">
+                    <span class="option-item-icon">⚙️</span>
+                    <span>Gérer la limite</span>
+                </div>
+                <span class="option-arrow">›</span>
+            </li>
+            <li class="option-item">
+                <div class="option-label">
+                    <span class="option-item-icon">📁</span>
+                    <span>Gérer le compte</span>
+                </div>
+                <span class="option-arrow">›</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+{% include "footer.html" %}
+<script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/main.js" %}"></script>
+<script src="{% static "accounts/compte/js/scripts.js" %}"></script>
+</body>
+</html>

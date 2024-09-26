@@ -2,10 +2,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "members/auth/login/fonts/icomoon/style.css" %}">
+    <link rel="stylesheet" href="{% static "members/auth/login/css/owl.carousel.min.css" %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/bootstrap.min.css" %}">
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static "members/auth/login/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "website/css/style.css" %}">
+    <link rel="icon" href="{% static "icon.png" %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "accounts/carte/css/style.css" %}">
+    <title>Compte d'opérations courantes</title>
 </head>
-<body>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-wrap">
+    {% include "accounts/partials/navbar.html" %}
+</div>
 
+<div class="content">
+    <div class="container">
+        <h1>VelliBank {{ carte.type_carte }}</h1>
+        <p>{{ carte.numero_carte | format_carte_credit }}</p>
+
+        <div class="balance-card">
+            {% include "accounts/partials/carte_progress_bar.html" %}
+            <div class="balance-info">
+                <button class="button">Gérer la carte</button>
+                <br>
+{#                <button class="button">Payer la carte</button>#}
+            </div>
+        </div>
+
+        <div class="tab-links">
+            <a href="#" class="active" onclick="showTab(event, 'transactions')">Transactions</a>
+            <a href="#" onclick="showTab(event, 'releves')">Relevés</a>
+            <a href="#" onclick="showTab(event, 'informations')">Informations</a>
+            {#            <a href="#" onclick="showTab(event, 'avantages')">Avantages</a>#}
+        </div>
+
+        <!-- Transactions Tab -->
+        {% include "accounts/partials/carte_transactions.html" %}
+        
+        {% include "accounts/partials/carte_releves.html" %}
+
+        <!-- Informations Tab -->
+        {% include "accounts/partials/carte_informations.html" %}
+    </div>
+</div>
+</div>
+
+{% include "footer.html" %}
+<script src="{% static "members/auth/login/js/jquery-3.3.1.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/popper.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/bootstrap.min.js" %}"></script>
+<script src="{% static "members/auth/login/js/main.js" %}"></script>
+<script src="{% static "accounts/carte/js/script.js" %}"></script>
 </body>
 </html>

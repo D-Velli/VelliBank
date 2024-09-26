@@ -76,3 +76,13 @@ def compte(request, numero_compte):
     compte = get_object_or_404(Compte, numero_compte=numero_compte)
     print(compte)
     return render(request, 'accounts/pages/compte.html', {'compte': compte})
+
+def carte(request, carte_id):
+    carte = get_object_or_404(Carte, id=carte_id)
+    print(carte)
+    return render(request, 'accounts/pages/carte.html', {'carte': carte})
+
+def gestion_carte(request,carte_id):
+    return render(request, 'accounts/pages/gestion_carte.html', {'carte': carte_id})
+
+
